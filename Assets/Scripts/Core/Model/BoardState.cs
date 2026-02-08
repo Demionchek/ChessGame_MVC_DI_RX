@@ -25,5 +25,24 @@ namespace Core.Model
             Set(from, null);
             piece.HasMoved = true;
         }
+
+        public BoardState Clone()
+        {
+            var clone = new BoardState();
+
+            for (int x = 0; x < 8; x++)
+                for (int y = 0; y < 8; y++)
+                {
+                    var piece = _board[x, y];
+                    if (piece == null) continue;
+
+                    clone._board[x, y] = new Piece(piece.Type, piece.Color)
+                    {
+                        HasMoved = piece.HasMoved
+                    };
+                }
+
+            return clone;
+        }
     }
 }
