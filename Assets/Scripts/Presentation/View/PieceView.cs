@@ -12,11 +12,22 @@ namespace Presentation.View
         public Position Position;
 
         private InputController _input;
+        private SpriteRenderer _renderer;
 
         [Inject]
         public void Construct(InputController input)
         {
             _input = input;
+        }
+
+        private void Awake()
+        {
+            _renderer = GetComponent<SpriteRenderer>();
+        }
+
+        public void SetSprite(Sprite sprite)
+        {
+            _renderer.sprite = sprite;
         }
 
         public void OnPointerClick(PointerEventData eventData)

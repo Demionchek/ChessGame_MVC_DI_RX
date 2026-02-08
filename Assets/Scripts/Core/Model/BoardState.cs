@@ -26,6 +26,13 @@ namespace Core.Model
             piece.HasMoved = true;
         }
 
+        public void Clear()
+        {
+            for (int x = 0; x < 8; x++)
+                for (int y = 0; y < 8; y++)
+                    _board[x, y] = null;
+        }
+
         public BoardState Clone()
         {
             var clone = new BoardState();

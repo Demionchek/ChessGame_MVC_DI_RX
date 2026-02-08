@@ -25,6 +25,20 @@ namespace Core.Model
             OnBoardChanged.OnNext(Board);
         }
 
+        public void SetupInitialPosition()
+        {
+            Board.Clear();
+
+            SetupBackRank(PieceColor.White, 0);
+            SetupPawns(PieceColor.White, 1);
+
+            SetupBackRank(PieceColor.Black, 7);
+            SetupPawns(PieceColor.Black, 6);
+
+            CurrentTurn = PieceColor.White;
+            OnBoardChanged.OnNext(Board);
+        }
+
         public void TryMove(Position from, Position to)
         {
             var move = new Move(from, to);
@@ -80,15 +94,28 @@ namespace Core.Model
                 : PieceColor.White;
         }
 
-        public void SetupInitialPosition()
+        private void SetupPawns(PieceColor color, int y)
         {
             for (int x = 0; x < 8; x++)
-            {
-                Board.Set(new Position(x, 1), new Piece(PieceType.Pawn, PieceColor.White));
-                Board.Set(new Position(x, 6), new Piece(PieceType.Pawn, PieceColor.Black));
-            }
+                Board.Set(new Position(x, y), new Piece(PieceType.Pawn, color));
+        }
 
-            OnBoardChanged.OnNext(Board);
+        private void SetupBackRank(PieceColor color, int y)
+        {
+            PieceType[] order =
+            {
+                PieceType.Rook,
+                PieceType.Knight,
+                PieceType.Bishop,
+                PieceType.Queen,
+                PieceType.King,
+                PieceType.Bishop,
+                PieceType.Knight,
+                PieceType.Rook
+            };
+
+            for (int x = 0; x < 8; x++)
+                Board.Set(new Position(x, y), new Piece(order[x], color));
         }
     }
 }

@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using Core.Model;
+using Presentation.View.Config;
 using UniRx;
 using UnityEngine;
 using VContainer;
@@ -9,6 +10,8 @@ namespace Presentation.View
 {
     public class BoardView : MonoBehaviour
     {
+        [SerializeField] private PieceSpriteLibrarySO _spriteLibrary;
+
         [Inject] private GameModel _game;
         [Inject] private IObjectResolver _objectResolver;
 
@@ -62,10 +65,13 @@ namespace Presentation.View
                     if (piece == null) continue;
 
                     GameObject go = _objectResolver.Instantiate(PiecePrefab, Root);
-                    go.transform.localPosition = new Vector3(x, y);
+                    go.transform.localPosition = new Vector3(x, y, 0);
 
                     PieceView pieceView = go.GetComponent<PieceView>();
                     pieceView.Position = pos;
+
+                    Sprite sprite = _spriteLibrary.Get(piece.Type, piece.Color);
+                    pieceView.SetSprite(sprite);
 
                     _pieces[pos] = go;
                 }

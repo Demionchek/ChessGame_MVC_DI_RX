@@ -41,6 +41,26 @@ namespace Core.Rules
 
         private List<Position> GetLegalMoves(BoardState board, Position from, Piece piece)
         {
+            var pseudo = GetPseudoMoves(board, from, piece);
+            var legal = new List<Position>();
+
+            foreach (var to in pseudo)
+            {
+                var sim = board.Clone();
+                sim.Move(from, to);
+
+                if (!IsKingInCheck(sim, piece.Color))
+                    legal.Add(to);
+            }
+
+            if (piece.Type == PieceType.King && !piece.HasMoved)
+                AddCastlingMoves(board, from, piece, legal);
+
+            return legal;
+        }
+
+        private List<Position> GetPseudoMoves(BoardState board, Position from, Piece piece)
+        {
             return piece.Type switch
             {
                 PieceType.Pawn => PawnMoves(board, from, piece),
@@ -136,6 +156,7 @@ namespace Core.Rules
                         break;
                     }
 
+
                     x += dx;
                     y += dy;
                 }
@@ -181,13 +202,16 @@ namespace Core.Rules
                         moves.Add(pos);
                 }
 
+            return moves;
+        }
+
+        private void AddCastlingMoves(BoardState board, Position from, Piece piece, List<Position> moves)
+        {
             if (!piece.HasMoved && !IsKingInCheck(board, piece.Color))
             {
-                TryAddCastling(board, from, piece, moves, true);  // king side
-                TryAddCastling(board, from, piece, moves, false); // queen side
+                TryAddCastling(board, from, piece, moves, true);
+                TryAddCastling(board, from, piece, moves, false);
             }
-
-            return moves;
         }
 
         private bool IsKingInCheck(BoardState board, PieceColor color)
@@ -213,7 +237,7 @@ namespace Core.Rules
                     Piece piece = board.Get(pos);
                     if (piece == null || piece.Color == color) continue;
 
-                    var moves = GetLegalMoves(board, pos, piece);
+                    var moves = GetPseudoMoves(board, pos, piece);
                     foreach (var move in moves)
                     {
                         if (move.X == kingPos.X && move.Y == kingPos.Y)
