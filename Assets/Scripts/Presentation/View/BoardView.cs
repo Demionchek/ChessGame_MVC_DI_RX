@@ -3,12 +3,14 @@ using Core.Model;
 using UniRx;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 
 namespace Presentation.View
 {
     public class BoardView : MonoBehaviour
     {
         [Inject] private GameModel _game;
+        [Inject] private IObjectResolver _objectResolver;
 
         public GameObject CellPrefab;
         public GameObject PiecePrefab;
@@ -27,10 +29,10 @@ namespace Presentation.View
             for (int x = 0; x < 8; x++)
                 for (int y = 0; y < 8; y++)
                 {
-                    var cellGO = Instantiate(CellPrefab, Root);
+                    GameObject cellGO = _objectResolver.Instantiate(CellPrefab, Root);
                     cellGO.transform.localPosition = new Vector3(x, y, 0);
 
-                    var cell = cellGO.GetComponent<CellView>();
+                    CellView cell = cellGO.GetComponent<CellView>();
                     cell.Position = new Position(x, y);
 
                     bool isWhite = (x + y) % 2 == 0;
@@ -55,14 +57,14 @@ namespace Presentation.View
             for (int x = 0; x < 8; x++)
                 for (int y = 0; y < 8; y++)
                 {
-                    var pos = new Position(x, y);
-                    var piece = board.Get(pos);
+                    Position pos = new Position(x, y);
+                    Piece piece = board.Get(pos);
                     if (piece == null) continue;
 
-                    var go = Instantiate(PiecePrefab, Root);
+                    GameObject go = _objectResolver.Instantiate(PiecePrefab, Root);
                     go.transform.localPosition = new Vector3(x, y);
 
-                    var pieceView = go.GetComponent<PieceView>();
+                    PieceView pieceView = go.GetComponent<PieceView>();
                     pieceView.Position = pos;
 
                     _pieces[pos] = go;
