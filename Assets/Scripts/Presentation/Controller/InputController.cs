@@ -7,7 +7,6 @@ namespace Presentation.Controller
 {
     public class InputController : MonoBehaviour
     {
-        private bool _placementMode = true;
         private PieceType _currentType = PieceType.Pawn;
         private PieceColor _currentColor = PieceColor.White;
         private Subject<Position> _clickStream = new();
@@ -26,12 +25,6 @@ namespace Presentation.Controller
 
         public void OnCellClicked(Position pos)
         {
-            if (_placementMode)
-            {
-                _game.PlacePiece(pos, new Piece(_currentType, _currentColor));
-                return;
-            }
-
             _clickStream.OnNext(pos);
         }
     }

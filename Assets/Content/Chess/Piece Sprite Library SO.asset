@@ -1,0 +1,51 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77ceda3623404c3ca95ce819cdab54eb, type: 3}
+  m_Name: Piece Sprite Library SO
+  m_EditorClassIdentifier: Assembly-CSharp::DefaultNamespace.PieceSpriteLibrarySO
+  _entries:
+  - Type: 0
+    Color: 0
+    Sprite: {fileID: -2078398660, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 0
+    Color: 1
+    Sprite: {fileID: 1668288918, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 1
+    Color: 0
+    Sprite: {fileID: -2069341525, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 1
+    Color: 1
+    Sprite: {fileID: -1205049933, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 2
+    Color: 0
+    Sprite: {fileID: -2008696787, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 2
+    Color: 1
+    Sprite: {fileID: 868377813, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 3
+    Color: 0
+    Sprite: {fileID: -1160400514, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 3
+    Color: 1
+    Sprite: {fileID: 1974123561, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 4
+    Color: 0
+    Sprite: {fileID: -1000341324, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 4
+    Color: 1
+    Sprite: {fileID: 806808667, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 5
+    Color: 0
+    Sprite: {fileID: 882558182, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}
+  - Type: 5
+    Color: 1
+    Sprite: {fileID: 1582437406, guid: b65e5e85ea1f7574a9dd29a41711a693, type: 3}

@@ -352,6 +352,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1d32585d727a4fb08256d38e93039c87, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Presentation.View.BoardView
+  _spriteLibrary: {fileID: 11400000, guid: 3f157942405fdfb4396c7aec7261c9a1, type: 2}
   CellPrefab: {fileID: 5142743170271837919, guid: 0ebcb9e70e543284285c16d419d5829c, type: 3}
   PiecePrefab: {fileID: 4767849786334394318, guid: 35403bb025e1d4d4eaa7347d0b18c3ff, type: 3}
   Root: {fileID: 1609025141}
